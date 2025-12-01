@@ -1,29 +1,6 @@
 /*
-OS S.P.A.R.K.
+S.P.A.R.K OS
 Smart Pulse And Response Keeper 
-
-DESCRIPCIÓN:
-  Sistema de monitoreo de signos vitales inteligente que mide temperatura
-  corporal y frecuencia cardíaca usando sensores MAX30102 y LM35, mostrando
-  resultados en pantalla OLED, enviando datos a la nube (Adafruit IO) y
-  generando alertas cuando los valores están fuera de rango.
- 
-COMPONENTES:
-  - ESP32 
-  - MAX30102 (Sensor de frecuencia cardíaca y SpO2)
-  - LM35 (Sensor de temperatura)
-  - Pantalla OLED SH1106
-  - Buzzer
-  - Botón (Control y selección de rango de edad)
-
-FLUJO:
-  1. STARTUP: Conecta a WiFi y carga sistema
-  2. IDLE: Pantalla de espera, click cambia edad, mantener inicia medición
-  3. WAIT_FINGER: Sensor activo esperando detección de dedo
-  4. READING: Mide durante 15 segundos (3 ciclos de 5 seg), muestra barra
-  5. DONE: Muestra resultados finales, envía datos a nube
-  6. CHECK: Usuario hace click para revisar alertas
-  7. SHOW_ERRORS: Muestra alertas si hay valores fuera de rango
  */
 
 #include <SPI.h>
@@ -349,8 +326,6 @@ void drawMainScreen() {
     display.setTextSize(2);
     display.setCursor(10, 10);
     display.print("MEASURING");
-    display.setCursor(30, 30);
-    display.print("...");
     
     // Barra de progreso
     display.drawRect(0, 48, 128, 12, SH110X_WHITE);
